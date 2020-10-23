@@ -1,0 +1,11 @@
+# GET http://localhost:3001/info
+
+//assuming that there is a person present at <id> already that we want to update
+PUT http://localhost:3001/api/persons/<id>
+Content-Type: application/json
+
+{
+  //"_id": 1345,
+  "name":"Aditya", //replace with the name at <id>
+  "number": 123456789
+}
