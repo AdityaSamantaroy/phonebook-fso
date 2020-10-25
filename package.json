@@ -12,7 +12,9 @@
 		"deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
 		"logs:prod": "heroku logs --tail",
 		"lint": "eslint .",
-		"deploy:full:exp": "npm run build:ui && git add . && git commit -m uibuild || 0 || npm run deploy"
+		"deploy:full:exp": "npm run build:ui && git add . && if [git commit -m uibuild]; then echo \"error: nothing to commit\"; else npm run deploy; fi",
+		"eh": "echo \"adi\"",
+		"github:push": "git push origin master"
 	},
 	"author": "",
 	"license": "ISC",
