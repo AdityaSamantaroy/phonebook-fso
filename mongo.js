@@ -31,6 +31,7 @@ if (process.argv.length === 5) {
 		date: new Date(),
 	})
 
+	// eslint-disable-next-line no-unused-vars
 	person.save().then(result => {
 		console.log('person entry saved!')
 		mongoose.connection.close()

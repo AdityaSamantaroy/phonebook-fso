@@ -5,10 +5,10 @@
 
 require('dotenv').config()
 const cors = require('cors')
-const { response } = require('express')
+// const { response } = require('express')
 const express = require('express')
 const morgan = require('morgan')
-const { update } = require('./models/phonebook')
+// const { update } = require('./models/phonebook')
 const app = express()
 
 const Person = require('./models/phonebook')
@@ -43,7 +43,7 @@ app.get('/info', (request, response) => {
 	console.log(request.Date)
 	response.send(
 		`<div>Phonebook has info for ${
-			persons.length
+			Person.find({}).count.length
 		} people</div><div>${new Date()}</div>`
 	)
 })
@@ -52,7 +52,7 @@ app.get('/info', (request, response) => {
 app.get('/api/persons/:id', (request, response, next) => {
 	const id = request.params.id
 
-	const person = Person.findById(id).then(person => {
+	Person.findById(id).then(person => {
 		if(person){
 			response.json(person)
 		}
@@ -69,6 +69,7 @@ app.delete('/api/persons/:id', (request, response, next) => {
 
 	Person.findByIdAndDelete(id)
 		.then(result => {
+			console.log(`deleted ${result}`)
 			response.status(204).end()
 		})
 		.catch(error => next(error))
